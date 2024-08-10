@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SAKE HACK SONIC 2024-08
+
+## Setup
+
+```sh
+# VSCode
+$ cp .vscode/settings.sample.json .vscode/settings.json
+# install npm package
+$ npm install
+```
 
 ## Getting Started
 
