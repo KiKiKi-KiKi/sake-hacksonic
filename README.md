@@ -5,6 +5,8 @@
 ```sh
 # VSCode
 $ cp .vscode/settings.sample.json .vscode/settings.json
+# Create .env
+$ cp .env.local.sample .env.local
 # install npm package
 $ npm install
 ```
