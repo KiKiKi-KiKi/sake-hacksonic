@@ -11,6 +11,7 @@
     "format": "npm run lint:fix && prettier --write --ignore-path .gitignore 'src/**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
+    "jotai": "^2.9.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
