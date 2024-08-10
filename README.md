@@ -1,6 +1,6 @@
-# SAKE HACK SONIC 2024-08
+# :sake: SAKE HACK SONIC 2024-08 :beer:
 
-## Setup
+## :cocktail: Setup
 
 ```sh
 # VSCode
@@ -11,7 +11,7 @@ $ cp .env.local.sample .env.local
 $ npm install
 ```
 
-## Getting Started
+## :wine_glass: Getting Started
 
 First, run the development server:
 
