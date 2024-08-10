@@ -1,3 +1,50 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": ["next/core-web-vitals", "prettier"],
+  "plugins": ["unused-imports", "import"],
+  "rules": {
+    "newline-before-return": "error",
+    // unused-import
+    "@typescript-eslint/no-unused-vars": "off", // or "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    // import order
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "object",
+          "type",
+          "index"
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "pathGroups": [
+          {
+            "pattern": "{react**,react-dom/**,next**,next/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "{@/**/*.css,./**/*.css,./**.module.css}",
+            "patternOptions": { "matchBase": true },
+            "group": "index",
+            "position": "after"
+          }
+        ]
+      }
+    ]
+  }
 }
