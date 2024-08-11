@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { PageContainer } from '@/components/layouts/PageContainer';
 import { APP_NAME } from '@/config';
-import { NomuzoCounter } from '@/features/NomuzoCounter';
+import { Nomuzo } from '@/features/Nomuzo';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
@@ -13,7 +13,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 export default function NomuzoPage() {
   return (
     <PageContainer title='飲むぞ！'>
-      <NomuzoCounter />
+      <Nomuzo />
     </PageContainer>
   );
 }
