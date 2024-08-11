@@ -1,13 +1,28 @@
 import { FC } from 'react';
 
-import { RandomSakeIcon } from '../RandomSakeIcon';
+import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 
 import { loader } from './loader.css';
+import Image from 'next/image';
+import { DRINKS_DATA } from '@/config';
 
-export const Loader: FC = () => {
+type LoaderProps = {
+  isBeerIcon?: boolean;
+};
+
+export const Loader: FC<LoaderProps> = ({ isBeerIcon = false }) => {
   return (
     <div className={loader}>
-      <RandomSakeIcon width={128} height={128} alt='Loading...' />
+      {isBeerIcon ? (
+        <Image
+          src={DRINKS_DATA['beer500'].icon}
+          width={128}
+          height={128}
+          alt='Loading...'
+        />
+      ) : (
+        <RandomSakeIcon width={128} height={128} alt='Loading...' />
+      )}
     </div>
   );
 };

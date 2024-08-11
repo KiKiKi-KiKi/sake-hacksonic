@@ -6,6 +6,7 @@ import { Box, VStack } from '@chakra-ui/react';
 import { LinkButton } from '@/components/Link';
 import { DrinkScore } from '@/features/DrinkScore';
 import { KanzoCountdown } from '@/features/KanzoCountdown/inex';
+import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 
 export const HomePageContent: FC = () => {
   return (
@@ -20,7 +21,12 @@ export const HomePageContent: FC = () => {
           width='100%'
         >
           <Box width='32px'>
-            <Image src='/icons/beer500.png' width={128} height={128} alt='' />
+            <RandomSakeIcon
+              width={128}
+              height={128}
+              alt=''
+              aria-hidden='true'
+            />
           </Box>
           飲むぞ！
         </LinkButton>
