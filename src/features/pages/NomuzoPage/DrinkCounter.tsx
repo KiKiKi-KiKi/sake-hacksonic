@@ -6,22 +6,27 @@ import { FC, ReactNode, useCallback, useMemo } from 'react';
 import { Box, Button, Text, useToast } from '@chakra-ui/react';
 
 import { IDrinkData } from '@/@types/drinks';
+import { DrinkData } from '@/atoms/drank.atom';
 import { DRINKS_DATA } from '@/config';
+import { useDrankMutators } from '@/hooks/useDrank';
 
-const drinks = Object.values(DRINKS_DATA);
+const DRINK = Object.values(DRINKS_DATA);
 
-type OnAddDrinkFunc = (props: { icon: ReactNode }) => void;
+type OnAddDrinkFunc = (
+  props: { icon: ReactNode } & Omit<DrinkData, 'timestamp'>,
+) => void;
 
-export const NomuzoCounter: FC = () => {
+export const DrinkCounter: FC = () => {
   const toast = useToast();
+  const { addDrink } = useDrankMutators();
 
-  const addDrink = useCallback<OnAddDrinkFunc>(
-    ({ icon }) => {
+  const handleAddDrink = useCallback<OnAddDrinkFunc>(
+    ({ icon, id, name, amount, alcohol }) => {
       console.log('addDrink');
       toast({
         render: () => icon,
         position: 'bottom-right',
-        duration: 1000,
+        duration: 2000,
         containerStyle: {
           background: 'yellow.200',
           padding: '0.5rem',
@@ -29,14 +34,20 @@ export const NomuzoCounter: FC = () => {
           minWidth: 'fit-content',
         },
       });
+      addDrink({
+        id,
+        name,
+        amount,
+        alcohol,
+      });
     },
-    [toast],
+    [toast, addDrink],
   );
 
   return (
     <Box display='flex' flexWrap='wrap' gap='4'>
-      {drinks.map((item) => (
-        <DrinkButton key={item.id} onAddDrink={addDrink} {...item} />
+      {DRINK.map((item) => (
+        <DrinkButton key={item.id} onAddDrink={handleAddDrink} {...item} />
       ))}
     </Box>
   );
@@ -55,14 +66,14 @@ const DrinkButton: FC<DrinkButtonProps> = ({
   icon,
   onAddDrink,
 }) => {
-  const iconImage = useMemo(() => {
+  const IconImage = useMemo(() => {
     return <Image src={icon} width={20} height={20} alt={name} />;
-  }, [icon]);
+  }, [icon, name]);
 
   const handleAdd = useCallback(() => {
     console.log(id, amount, alcohol);
-    onAddDrink({ icon: iconImage });
-  }, [id, amount, alcohol, iconImage, onAddDrink]);
+    onAddDrink({ icon: IconImage, id, name, amount, alcohol });
+  }, [id, name, amount, alcohol, IconImage, onAddDrink]);
 
   return (
     <Button

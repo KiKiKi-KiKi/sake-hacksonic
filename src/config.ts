@@ -2,6 +2,8 @@ import { DrinksType, IDrinkData } from './@types/drinks';
 
 export const APP_NAME = '君とカンゾウ' as const;
 
+export const DEFAULT_SAKE_IMAGE = '/icons/_default_icon.png' as const;
+
 export const DRINKS_DATA: {
   [key in DrinksType]: IDrinkData;
 } = {
@@ -9,7 +11,7 @@ export const DRINKS_DATA: {
     id: 'beer350',
     name: 'ビール',
     amount: 350,
-    alcohol: 350 / 500,
+    alcohol: (350 / 500) * 10,
     icon: '/icons/beer350.png',
   },
   beer500: {
