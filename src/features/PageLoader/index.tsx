@@ -1,6 +1,8 @@
-import { Loader } from '@/components/Loader';
-import { Box } from '@chakra-ui/react';
 import { FC } from 'react';
+
+import { Box } from '@chakra-ui/react';
+
+import { Loader } from '@/components/Loader';
 
 export const PageLoader: FC = () => {
   return (

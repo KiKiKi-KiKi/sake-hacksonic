@@ -5,9 +5,9 @@ import { FC, ReactNode, useEffect, useReducer } from 'react';
 
 import { onAuthStateChanged } from 'firebase/auth';
 
+import { PageLoader } from '@/features/PageLoader';
 import { auth } from '@/firebase/client';
 import { useAuthMutators } from '@/hooks/useAuth';
-import { PageLoader } from '@/features/PageLoader';
 
 type AuthProviderProps = {
   children: ReactNode;
