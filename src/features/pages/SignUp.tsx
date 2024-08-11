@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 
@@ -21,17 +20,16 @@ import {
 } from '@chakra-ui/react';
 
 import { Logo } from '@/components/Logo';
+import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 import { SignOutButton } from '@/components/SignOutButton';
-import { APP_NAME, DRINK_KEYS } from '@/config';
+import { APP_NAME } from '@/config';
 import { useAuth, useAuthMutators } from '@/hooks/useAuth';
-import { getDrinkImage } from '@/utilities/getDrinkImage';
 import { nl2br } from '@/utilities/nl2br';
 
 export const SignUp: FC = () => {
   const router = useRouter();
   const { user } = useAuth();
   const { signIn, isLoading, error } = useAuthMutators();
-  const randKey = DRINK_KEYS[Math.floor(Math.random() * DRINK_KEYS.length)];
 
   const handleSignUp = () => signIn();
 
@@ -53,12 +51,7 @@ export const SignUp: FC = () => {
       <Container py='12'>
         <Card maxW='24rem' mx='auto'>
           <Box position='absolute' top='3' left='3'>
-            <Image
-              src={getDrinkImage(randKey)}
-              width='32'
-              height='32'
-              alt='Enjoy Beer!'
-            />
+            <RandomSakeIcon />
           </Box>
           <CardHeader textAlign='center'>
             <Heading
