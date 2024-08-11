@@ -11,6 +11,11 @@ globalStyle('html, body', {
   overflowX: 'hidden',
 });
 
+globalStyle('body', {
+  // https://fontplus.jp/usage/services/chws-vchw
+  fontFeatureSettings: '"palt" 1',
+});
+
 globalStyle('.svg', {
   fill: 'currentColor',
 });
