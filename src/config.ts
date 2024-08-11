@@ -1,4 +1,5 @@
 import { DrinksType, IDrinkData } from './@types/drinks';
+import { objectKeys } from './utilities/objectKeys';
 
 export const APP_NAME = '君とカンゾウ' as const;
 
@@ -92,4 +93,8 @@ export const DRINKS_DATA: {
     notice: 'ロング缶',
     icon: '/icons/strongzero500.png',
   },
-};
+} as const;
+
+export const DRINK_KEYS = objectKeys(DRINKS_DATA);
+
+export const DRINK_DATA_ARRAY = Object.values(DRINKS_DATA);

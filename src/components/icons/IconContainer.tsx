@@ -1,5 +1,7 @@
 import { FC, ReactNode } from 'react';
 
+import { classnames } from '@/utilities/classnames';
+
 type IconContainerProps = {
   children: ReactNode;
   className?: string;
@@ -12,7 +14,7 @@ export const IconContainer: FC<IconContainerProps> = ({
   ariaHidden = false,
 }) => {
   return (
-    <i className='icon' area-hidden={ariaHidden}>
+    <i className={classnames('icon', className)} area-hidden={ariaHidden}>
       {children}
     </i>
   );

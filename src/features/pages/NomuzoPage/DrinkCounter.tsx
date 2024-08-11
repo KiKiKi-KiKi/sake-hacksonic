@@ -7,10 +7,8 @@ import { Box, Button, Text, useToast } from '@chakra-ui/react';
 
 import { IDrinkData } from '@/@types/drinks';
 import { DrinkData } from '@/atoms/drank.atom';
-import { DRINKS_DATA } from '@/config';
+import { DRINK_DATA_ARRAY as DRINKS } from '@/config';
 import { useDrankMutators } from '@/hooks/useDrank';
-
-const DRINK = Object.values(DRINKS_DATA);
 
 type OnAddDrinkFunc = (
   props: { icon: ReactNode } & Omit<DrinkData, 'timestamp'>,
@@ -45,7 +43,7 @@ export const DrinkCounter: FC = () => {
 
   return (
     <Box display='flex' flexWrap='wrap' gap='4'>
-      {DRINK.map((item) => (
+      {DRINKS.map((item) => (
         <DrinkButton key={item.id} onAddDrink={handleAddDrink} {...item} />
       ))}
     </Box>

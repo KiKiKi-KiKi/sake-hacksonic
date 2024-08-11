@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Logo } from '@/components/Logo';
+import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 import { SignOutButton } from '@/components/SignOutButton';
 import { APP_NAME } from '@/config';
 import { useAuth, useAuthMutators } from '@/hooks/useAuth';
@@ -45,22 +46,27 @@ export const SignUp: FC = () => {
       w='100vw'
       h='100vh'
       backgroundColor='yellow.300'
-      borderTop='3rem solid #fff'
+      borderTop='3rem solid #FFF'
     >
       <Container py='12'>
         <Card maxW='24rem' mx='auto'>
+          <Box position='absolute' top='3' left='3'>
+            <RandomSakeIcon />
+          </Box>
           <CardHeader textAlign='center'>
             <Heading
               as='h1'
               size='md'
+              fontStyle='italic'
               display='flex'
               flexDirection='column'
               alignItems='center'
               gap='2'
             >
-              <Logo />
-              <Text fontStyle='italic' fontWeight='bold'>
-                {APP_NAME}
+              <Logo isGood={!error} />
+              <Text fontWeight='bold'>{APP_NAME}</Text>
+              <Text as='small' fontSize='sm' color='gray.400'>
+                Enjoy Beer!
               </Text>
             </Heading>
           </CardHeader>
@@ -78,6 +84,7 @@ export const SignUp: FC = () => {
                 isLoading={isLoading}
                 colorScheme='teal'
                 size='lg'
+                gap='2'
                 width='full'
                 maxW='17.5rem'
               >
