@@ -6,6 +6,7 @@ import { FC, ReactNode, useEffect, useReducer } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { auth } from '@/firebase/client';
+import { useAuthMutators } from '@/hooks/useAuth';
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -16,18 +17,18 @@ const isSignUpPage = (): boolean => {
 };
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
+  const { setUser, resetUser, signOut } = useAuthMutators();
   const [isLoading, loadComplete] = useReducer(() => false, true);
   const router = useRouter();
 
   useEffect(() => {
-    console.log({ isLoading });
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log({ user });
       if (!user) {
         const isSignUp = isSignUpPage();
-        console.log({ user, isSignUp });
+        resetUser();
+
         if (!isSignUp) {
-          router.replace('/signup');
+          await router.replace('/signup');
           loadComplete();
 
           return;
@@ -35,6 +36,13 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         loadComplete();
 
         return;
+      }
+
+      // set user
+      try {
+        await setUser(user);
+      } catch (error) {
+        signOut();
       }
 
       loadComplete();
