@@ -80,10 +80,19 @@ const getTimerCount = (distance: number): CountDownTime => {
 
 export type DangerLevelType = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
+export const getDangerLevelByExpiredAt = (
+  expiredAt: number,
+): DangerLevelType => {
+  const now = Date.now();
+  const distance = expiredAt - now;
+
+  return getDangerLevel(distance);
+};
+
 const getDangerLevel = (expiredTime: number): DangerLevelType => {
   const exHour = expiredTime / (60 * 60 * 1000);
 
-  if (expiredTime === 0) {
+  if (expiredTime <= 0) {
     return 0;
   }
 

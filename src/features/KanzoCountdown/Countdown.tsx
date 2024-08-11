@@ -9,7 +9,7 @@ import { useCounter } from './useCounter';
 
 import { container, count, label, timer } from './counter.css';
 
-export const KanzoContdown: FC = () => {
+export const Countdown: FC = () => {
   const { expiredAt } = useDrank();
   const { days, hours, minutes, seconds, dangerLevel } = useCounter(expiredAt);
   const units = ['日', '時', '分', '秒'] as const;

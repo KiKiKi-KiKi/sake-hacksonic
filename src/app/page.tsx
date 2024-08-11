@@ -4,11 +4,13 @@ import { Box, VStack } from '@chakra-ui/react';
 
 import { PageContainer } from '@/components/layouts/PageContainer';
 import { LinkButton } from '@/components/Link';
+import { KanzoCountdown } from '@/features/KanzoCountdown/inex';
+import { DrinksCount } from '@/features/pages/NomuzoPage/DrinksCount';
 
 export default function Home() {
   return (
     <PageContainer isHome={true}>
-      <Box height='250px'>WIP Status</Box>
+      <KanzoCountdown py='6' />
       <VStack gap='4'>
         <LinkButton
           href='/nomuzo'
@@ -23,6 +25,10 @@ export default function Home() {
           飲むぞ！
         </LinkButton>
       </VStack>
+      <Box color='gray.400' mt='6'>
+        WIP: 飲んで分解されてないアルコールの画像を背景に表示する
+        <DrinksCount />
+      </Box>
     </PageContainer>
   );
 }
