@@ -16,6 +16,10 @@ globalStyle('body', {
   fontFeatureSettings: '"palt" 1',
 });
 
+globalStyle('figure', {
+  display: 'block',
+});
+
 globalStyle('.svg', {
   fill: 'currentColor',
 });
