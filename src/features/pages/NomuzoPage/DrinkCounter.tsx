@@ -22,7 +22,6 @@ export const DrinkCounter: FC = () => {
 
   const handleAddDrink = useCallback<OnAddDrinkFunc>(
     ({ icon, id, name, amount, alcohol }) => {
-      console.log('addDrink');
       toast({
         render: () => icon,
         position: 'bottom-right',
@@ -71,7 +70,6 @@ const DrinkButton: FC<DrinkButtonProps> = ({
   }, [icon, name]);
 
   const handleAdd = useCallback(() => {
-    console.log(id, amount, alcohol);
     onAddDrink({ icon: IconImage, id, name, amount, alcohol });
   }, [id, name, amount, alcohol, IconImage, onAddDrink]);
 

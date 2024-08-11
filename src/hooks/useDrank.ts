@@ -2,7 +2,12 @@ import { useCallback } from 'react';
 
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { alcoholAmount, drankAtom, DrinkData } from '@/atoms/drank.atom';
+import {
+  alcoholAmount,
+  drankAtom,
+  DrinkData,
+  InitialDrankData,
+} from '@/atoms/drank.atom';
 
 export const useDrank = () => {
   const { startAt, startDate, drinks } = useAtomValue(drankAtom);
@@ -64,7 +69,12 @@ export const useDrankMutators = () => {
     [setter],
   );
 
+  const reset = () => {
+    setter({ ...InitialDrankData });
+  };
+
   return {
     addDrink,
+    reset,
   };
 };
