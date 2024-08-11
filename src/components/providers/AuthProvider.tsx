@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import { auth } from '@/firebase/client';
 import { useAuthMutators } from '@/hooks/useAuth';
+import { PageLoader } from '@/features/PageLoader';
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -29,10 +30,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
         if (!isSignUp) {
           await router.replace('/signup');
-          loadComplete();
+          setTimeout(() => loadComplete(), 1000);
 
           return;
         }
+
         loadComplete();
 
         return;
@@ -52,7 +54,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   if (isLoading) {
-    return 'loading';
+    return <PageLoader />;
   }
 
   return children;
