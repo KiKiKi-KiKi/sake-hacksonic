@@ -1,1 +1,1 @@
-export const APP_NAME = 'Go!Go!KanZo-kun!' as const;
+export const APP_NAME = '君とカンゾウ' as const;

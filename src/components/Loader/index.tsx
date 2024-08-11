@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { FC } from 'react';
 
 import { loader } from './loader.css';
-import Image from 'next/image';
 
 export const Loader: FC = () => {
   return (

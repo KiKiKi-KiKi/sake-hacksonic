@@ -16,8 +16,10 @@ import {
   FormControl,
   Heading,
   Spinner,
+  Text,
 } from '@chakra-ui/react';
 
+import { Logo } from '@/components/Logo';
 import { SignOutButton } from '@/components/SignOutButton';
 import { APP_NAME } from '@/config';
 import { useAuth, useAuthMutators } from '@/hooks/useAuth';
@@ -39,12 +41,27 @@ export const SignUp: FC = () => {
   }, [user, router]);
 
   return (
-    <Box w='100vw' h='100vh'>
-      <Container py='6'>
+    <Box
+      w='100vw'
+      h='100vh'
+      backgroundColor='yellow.300'
+      borderTop='3rem solid #fff'
+    >
+      <Container py='12'>
         <Card maxW='24rem' mx='auto'>
           <CardHeader textAlign='center'>
-            <Heading as='h1' size='md'>
-              {APP_NAME}
+            <Heading
+              as='h1'
+              size='md'
+              display='flex'
+              flexDirection='column'
+              alignItems='center'
+              gap='2'
+            >
+              <Logo />
+              <Text fontStyle='italic' fontWeight='bold'>
+                {APP_NAME}
+              </Text>
             </Heading>
           </CardHeader>
           <CardBody>
