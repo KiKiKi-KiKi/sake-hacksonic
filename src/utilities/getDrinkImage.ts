@@ -1,10 +1,8 @@
 import { DrinksType } from '@/@types/drinks';
-import { DEFAULT_SAKE_IMAGE, DRINKS_DATA } from '@/config';
-
-const DRINK = Object.values(DRINKS_DATA);
+import { DEFAULT_SAKE_IMAGE, DRINK_DATA_ARRAY } from '@/config';
 
 export const getDrinkImage = (key: DrinksType) => {
-  const item = DRINK.find(({ id }) => id === key);
+  const item = DRINK_DATA_ARRAY.find(({ id }) => id === key);
 
   if (!item) {
     // default Icon
