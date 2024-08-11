@@ -11,7 +11,7 @@ export const DRINKS_DATA: {
     id: 'beer350',
     name: 'ビール',
     amount: 350,
-    alcohol: 350 / 500,
+    alcohol: (350 / 500) * 10,
     icon: '/icons/beer350.png',
   },
   beer500: {

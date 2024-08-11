@@ -20,7 +20,7 @@ export interface IDrinkData {
   name: string;
   amount: number;
   notice?: string;
-  // 純アルコール単位
+  // 純アルコール単位 10 = 5h
   // cf.
   // - https://www.ask.or.jp/article/8502
   // - https://www.ask.or.jp/article/8502

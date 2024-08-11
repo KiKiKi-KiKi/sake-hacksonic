@@ -38,7 +38,7 @@ export const alcoholAmount = atom((get) => {
     },
   );
   // 10 ... 5h
-  const expiredTime = (alcoholTotal / 5) * 60 * 60 * 1000;
+  const expiredTime = ((alcoholTotal * 5) / 10) * 60 * 60 * 1000;
 
   const expiredAt = startAt ? startAt + expiredTime : undefined;
 
