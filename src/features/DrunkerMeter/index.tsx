@@ -143,8 +143,12 @@ const DrunkerMeter: FC<DrunkerMeterProps> = ({ initialData }) => {
     scene.canvas.width = width;
     scene.canvas.height = height;
 
+    // scene.engine は取得可能だが types でエラーになるので ignore する
+    // @ts-ignore
     const ground = scene.engine.world.bodies[0];
+    // @ts-ignore
     const leftWall = scene.engine.world.bodies[1];
+    // @ts-ignore
     const rightWall = scene.engine.world.bodies[2];
 
     Body.setPosition(ground, {
