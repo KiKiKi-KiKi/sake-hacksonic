@@ -7,7 +7,7 @@ export const container = style({
   width: '100%',
   height: '100%',
   // header 60px, footer 45px
-  padding: '60px 0.5rem 45px',
+  padding: '50px 0 40px',
   pointerEvents: 'none',
   zIndex: -1,
   selectors: {
