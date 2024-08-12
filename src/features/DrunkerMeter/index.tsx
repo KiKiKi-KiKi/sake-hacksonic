@@ -91,11 +91,18 @@ const DrunkerMeter: FC<DrunkerMeterProps> = ({ initialData }) => {
     const balls = initialDrinks.map((item) => {
       const { alcohol, amount } = item;
       const randomX = Math.floor(Math.random() * -width) + width;
-      const radius = alcohol < 30 ? alcohol * 3 : alcohol * 0.8;
+      const radius =
+        alcohol < 10
+          ? alcohol * 5
+          : alcohol < 15
+            ? alcohol * 3.25
+            : alcohol > 30
+              ? alcohol
+              : alcohol * 2.5;
       // const radius = amount / 20;
       const scale = (radius * 2) / 100;
 
-      return Bodies.circle(randomX, 0, radius, {
+      return Bodies.circle(randomX, 100, radius, {
         restitution: (amount - alcohol) / 500,
         render: {
           fillStyle: 'rgb(245, 125, 41)',
