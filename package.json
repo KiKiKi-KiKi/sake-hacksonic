@@ -20,6 +20,7 @@
     "framer-motion": "^11.3.24",
     "jotai": "^2.9.2",
     "ky": "^1.5.0",
+    "matter-js": "^0.20.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/matter-js": "^0.19.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

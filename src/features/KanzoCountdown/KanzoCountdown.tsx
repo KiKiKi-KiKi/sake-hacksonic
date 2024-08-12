@@ -15,7 +15,7 @@ import { kanzo } from './kanzo.css';
 export const KanzoCountdown: FC<BoxProps> = ({ ...boxProps }) => {
   const { expiredAt } = useDrank();
   const dangerLevel = getDangerLevelByExpiredAt(expiredAt ?? 0);
-  console.log({ dangerLevel });
+  // console.log({ dangerLevel });
 
   return (
     <Box

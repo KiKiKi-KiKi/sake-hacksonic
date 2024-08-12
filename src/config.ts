@@ -39,7 +39,7 @@ export const DRINKS_DATA: {
   },
   wine100: {
     id: 'wine100',
-    name: '日本酒',
+    name: 'ワイン',
     amount: 100,
     alcohol: 0.5 * 10,
     notice: 'グラス1杯',

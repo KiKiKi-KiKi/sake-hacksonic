@@ -26,7 +26,7 @@ export const PageLoader: FC = () => {
         alignItems='center'
         justifyContent='center'
       >
-        <Loader />
+        <Loader isBeerIcon={true} />
       </Box>
     </Box>
   );
