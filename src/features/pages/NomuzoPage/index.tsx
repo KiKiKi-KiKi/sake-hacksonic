@@ -2,6 +2,9 @@ import { FC } from 'react';
 
 import { Box } from '@chakra-ui/react';
 
+import { BackgroundContainer } from '@/components/BackgroundContainer';
+import { DrunkerMeter } from '@/features/DrunkerMeter';
+
 import { DrinkCounter } from './DrinkCounter';
 
 export const Nomuzo: FC = () => {
@@ -17,9 +20,9 @@ export const Nomuzo: FC = () => {
       >
         <DrinkCounter />
       </Box>
-      {/* <BackgroundContainer>
+      <BackgroundContainer>
         <DrunkerMeter />
-      </BackgroundContainer> */}
+      </BackgroundContainer>
     </Box>
   );
 };
