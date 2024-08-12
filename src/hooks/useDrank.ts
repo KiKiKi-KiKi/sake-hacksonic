@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import {
+  addDrinkAtom,
   alcoholAmount,
   drankAtom,
   DrinkData,
@@ -45,32 +46,35 @@ const getDateString = (timeStamp: number) => {
 
 export const useDrankMutators = () => {
   const setter = useSetAtom(drankAtom);
+  const setAddDrinkData = useSetAtom(addDrinkAtom);
 
   const addDrink = useCallback(
     (drinkData: Omit<DrinkData, 'timestamp'>) => {
+      const timestamp = Date.now();
+      const addItem = {
+        ...drinkData,
+        timestamp,
+      };
+
       setter(({ startAt, startDate, drinks }) => {
-        const timestamp = Date.now();
         const newStartAt = startAt ?? timestamp;
         const newStartDate = startDate ?? getDateString(newStartAt);
 
         return {
           startAt: newStartAt,
           startDate: newStartDate,
-          drinks: [
-            ...drinks,
-            {
-              ...drinkData,
-              timestamp,
-            },
-          ],
+          drinks: [...drinks, addItem],
         };
       });
+
+      setAddDrinkData(addItem);
     },
-    [setter],
+    [setter, setAddDrinkData],
   );
 
   const reset = () => {
     setter({ ...InitialDrankData });
+    setAddDrinkData(undefined);
   };
 
   return {

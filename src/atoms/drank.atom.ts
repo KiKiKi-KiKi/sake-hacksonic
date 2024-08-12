@@ -48,3 +48,5 @@ export const alcoholAmount = atom((get) => {
     expiredAt,
   };
 });
+
+export const addDrinkAtom = atom<DrinkData | undefined>(undefined);
