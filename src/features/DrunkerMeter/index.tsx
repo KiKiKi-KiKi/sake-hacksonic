@@ -3,11 +3,31 @@ import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Bodies, Body, Engine, Render, Runner, World } from 'matter-js';
 
+import { DrinkData } from '@/atoms/drank.atom';
+import { DRINK_KEYS } from '@/config';
+import { useDrank } from '@/hooks/useDrank';
+import { getDrinkImage } from '@/utilities/getDrinkImage';
+
 import { scene as sceneStyle } from './drunkMeter.css';
 
-const BORDER_WIDTH = 20 as const;
+// TODO: 円形の画像を作成する
+const DRINK_IMAGES = Object.fromEntries(
+  DRINK_KEYS.map<[(typeof DRINK_KEYS)[number], string]>((key) => [
+    key,
+    getDrinkImage(key),
+  ]),
+) as Record<(typeof DRINK_KEYS)[number], string>;
 
-export const DrunkerMeter: FC = () => {
+const BORDER_WIDTH = 10 as const;
+
+type DrunkerMeterProps = {
+  initialData: DrinkData[];
+};
+
+const DrunkerMeter: FC<DrunkerMeterProps> = ({ initialData }) => {
+  const [initialDrinks] = useState([...initialData]);
+  console.log({ initialDrinks });
+
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -34,7 +54,7 @@ export const DrunkerMeter: FC = () => {
       options: {
         width: width,
         height: height,
-        background: 'rgb(251, 203, 98, 0.5)',
+        background: 'rgb(251, 203, 98, 0.25)',
         wireframes: false,
       },
     });
@@ -43,13 +63,13 @@ export const DrunkerMeter: FC = () => {
     const ground = Bodies.rectangle(width / 2, height, width, BORDER_WIDTH, {
       isStatic: true,
       render: {
-        fillStyle: 'rgb(245, 125, 41)',
+        fillStyle: 'rgba(245, 125, 41, 0)',
       },
     });
     const leftWall = Bodies.rectangle(0, height / 2, BORDER_WIDTH, height, {
       isStatic: true,
       render: {
-        fillStyle: 'rgb(245, 125, 41)',
+        fillStyle: 'rgba(245, 125, 41, 0)',
       },
     });
     const rightWall = Bodies.rectangle(
@@ -60,19 +80,35 @@ export const DrunkerMeter: FC = () => {
       {
         isStatic: true,
         render: {
-          fillStyle: 'rgb(245, 125, 41)',
+          fillStyle: 'rgba(245, 125, 41, 0)',
         },
       },
     );
 
-    const ball = Bodies.circle(150, 0, 10, {
-      restitution: 0.9,
-      render: {
-        fillStyle: 'yellow',
-      },
+    World.add(engine.world, [ground, leftWall, rightWall]);
+
+    // set initial drinks
+    const balls = initialDrinks.map((item) => {
+      const { alcohol, amount } = item;
+      const randomX = Math.floor(Math.random() * -width) + width;
+      const radius = alcohol < 30 ? alcohol * 3 : alcohol * 0.8;
+      // const radius = amount / 20;
+      const scale = (radius * 2) / 100;
+
+      return Bodies.circle(randomX, 0, radius, {
+        restitution: (amount - alcohol) / 500,
+        render: {
+          fillStyle: 'rgb(245, 125, 41)',
+          sprite: {
+            texture: DRINK_IMAGES[item.id],
+            xScale: scale,
+            yScale: scale,
+          },
+        },
+      });
     });
 
-    World.add(engine.world, [ground, leftWall, rightWall, ball]);
+    World.add(engine.world, [...balls]);
 
     Render.run(render);
 
@@ -89,7 +125,7 @@ export const DrunkerMeter: FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [handleResize]);
+  }, [handleResize, initialDrinks]);
 
   // Responsive World size
   useEffect(() => {
@@ -151,3 +187,11 @@ export const DrunkerMeter: FC = () => {
     </div>
   );
 };
+
+const DrunkerMeterContainer: FC = () => {
+  const { drinks } = useDrank();
+
+  return <DrunkerMeter initialData={drinks} />;
+};
+
+export { DrunkerMeterContainer as DrunkerMeter };
