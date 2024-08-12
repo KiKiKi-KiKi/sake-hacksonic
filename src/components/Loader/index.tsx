@@ -1,10 +1,10 @@
+import Image from 'next/image';
 import { FC } from 'react';
 
 import { RandomSakeIcon } from '@/components/RandomSakeIcon';
+import { DRINKS_DATA } from '@/config';
 
 import { loader } from './loader.css';
-import Image from 'next/image';
-import { DRINKS_DATA } from '@/config';
 
 type LoaderProps = {
   isBeerIcon?: boolean;

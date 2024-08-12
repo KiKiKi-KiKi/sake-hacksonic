@@ -1,12 +1,11 @@
-import Image from 'next/image';
 import { FC } from 'react';
 
 import { Box, VStack } from '@chakra-ui/react';
 
 import { LinkButton } from '@/components/Link';
+import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 import { DrinkScore } from '@/features/DrinkScore';
 import { KanzoCountdown } from '@/features/KanzoCountdown/inex';
-import { RandomSakeIcon } from '@/components/RandomSakeIcon';
 
 export const HomePageContent: FC = () => {
   return (
